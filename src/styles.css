@@ -96,6 +96,12 @@ header {
   box-shadow: var(--shadow-card);
   overflow: hidden;
 }
+.card-grow {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
 
 /* ── Profile row ── */
 .profiles-row {
@@ -169,7 +175,7 @@ select:disabled { opacity: 0.4; cursor: not-allowed; }
 .advanced-toggle:hover { color: var(--text); }
 
 /* ── Category list ── */
-.category-list { max-height: 340px; overflow-y: auto; }
+.category-list { flex: 1; min-height: 0; overflow-y: auto; }
 
 .category-item { border-bottom: 1px solid var(--border); }
 .category-item:last-child { border-bottom: none; }
