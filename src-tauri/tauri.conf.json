@@ -14,12 +14,12 @@
       {
         "title": "Vivaldi Sync",
         "width": 720,
-        "height": 640,
+        "height": 760,
         "resizable": true,
         "center": true,
         "decorations": true,
         "minWidth": 600,
-        "minHeight": 520
+        "minHeight": 620
       }
     ],
     "security": {
