@@ -7,7 +7,7 @@
   <meta name="description" content="Sync UI settings, themes, keyboard shortcuts, search engines, and extensions between Vivaldi profiles — locally, without cloud. Free macOS app." />
   <meta property="og:title" content="Vivaldi Sync" />
   <meta property="og:description" content="Sync Vivaldi profiles locally, without cloud." />
-  <meta property="og:image" content="https://smithplus.github.io/VivaldiProfileSyncer/screenshots/og.png" />
+  <meta property="og:image" content="https://smithplus.github.io/VivaldiProfileSyncer/screenshots/sync.png" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -29,8 +29,9 @@
         <span>Vivaldi Sync</span>
       </a>
       <div class="nav-links">
-        <a href="#features">Features</a>
+        <a href="#story">Story</a>
         <a href="#screenshots">Screenshots</a>
+        <a href="#features">Features</a>
         <a href="https://github.com/smithplus/VivaldiProfileSyncer" target="_blank">GitHub</a>
         <a href="https://github.com/smithplus/VivaldiProfileSyncer/releases/latest" class="nav-download" target="_blank">Download</a>
       </div>
@@ -39,19 +40,17 @@
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-badge">macOS · Free · Open Source</div>
+    <div class="eyebrow">Free · Open source · macOS</div>
     <h1 class="hero-title">Sync Vivaldi profiles.<br/>Locally. No cloud.</h1>
     <p class="hero-sub">
-      Keep your themes, shortcuts, tab layout, extensions, and more in sync across multiple Vivaldi profiles — all on your Mac, all private.
+      Keep your themes, shortcuts, tab layout, extensions, and more in sync across multiple Vivaldi profiles. Everything stays on your Mac.
     </p>
     <div class="hero-actions">
       <a href="https://github.com/smithplus/VivaldiProfileSyncer/releases/latest" class="btn-primary" target="_blank">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         Download for macOS
       </a>
-      <a href="https://github.com/smithplus/VivaldiProfileSyncer" class="btn-ghost" target="_blank">
-        View on GitHub →
-      </a>
+      <a href="https://github.com/smithplus/VivaldiProfileSyncer" class="btn-ghost" target="_blank">View on GitHub</a>
     </div>
     <p class="hero-meta">v0.1.1 · Requires macOS Ventura or later · Apple Silicon</p>
   </section>
@@ -59,20 +58,92 @@
   <!-- SCREENSHOTS -->
   <section class="screenshots" id="screenshots">
     <div class="container">
-      <div class="screenshots-grid">
-        <figure class="screenshot-main">
+      <div class="section-label">Screenshots</div>
+      <div class="screenshots-row">
+        <figure class="screenshot-card">
+          <div class="window-chrome">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+            <span class="window-title">Sync</span>
+          </div>
           <img src="screenshots/sync.png" alt="Vivaldi Sync — Sync tab" loading="lazy" />
-          <figcaption>Sync settings between profiles with one click</figcaption>
+          <figcaption>Pick your profiles, choose what to sync, done.</figcaption>
         </figure>
-        <div class="screenshots-side">
-          <figure>
-            <img src="screenshots/extensions.png" alt="Extensions tab" loading="lazy" />
-            <figcaption>Copy extensions between profiles</figcaption>
-          </figure>
-          <figure>
-            <img src="screenshots/settings.png" alt="Settings tab" loading="lazy" />
-            <figcaption>Auto-sync on schedule or launch</figcaption>
-          </figure>
+        <figure class="screenshot-card">
+          <div class="window-chrome">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+            <span class="window-title">Extensions</span>
+          </div>
+          <img src="screenshots/extensions.png" alt="Extensions tab" loading="lazy" />
+          <figcaption>Copy installed extensions from one profile to another.</figcaption>
+        </figure>
+        <figure class="screenshot-card">
+          <div class="window-chrome">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+            <span class="window-title">Settings</span>
+          </div>
+          <img src="screenshots/settings.png" alt="Settings tab" loading="lazy" />
+          <figcaption>Auto-sync on a schedule or every time the app launches.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY I BUILT THIS -->
+  <section class="story" id="story">
+    <div class="container">
+      <div class="story-inner">
+        <div class="section-label">Why I built this</div>
+        <div class="story-body">
+          <p>
+            Earlier this year Microsoft quietly removed the app sidebar from Edge. That was the one feature keeping me there, so I switched to Vivaldi. It has the sidebar, it is Chromium-based, and it is surprisingly configurable.
+          </p>
+          <p>
+            The problem is I run two Vivaldi profiles. One for work, one for personal. Every time I tweaked a theme or changed a keyboard shortcut in one profile, the other would fall behind. Vivaldi does not have built-in cross-profile sync for settings, so I ended up copying stuff by hand.
+          </p>
+          <p>
+            I spent a weekend writing a small Tauri app to handle this. It reads the Preferences JSON from one profile and copies specific keys to another. Nothing leaves your machine. No accounts. No cloud. Just file copies with a backup first.
+          </p>
+          <p>
+            I figured if I needed this, someone else probably does too. Especially with how many people are moving to Vivaldi right now.
+          </p>
+          <p class="story-sig">Martin Smith</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how" id="how">
+    <div class="container">
+      <div class="section-label">How it works</div>
+      <h2 class="section-title">Simple as 1-2-3</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>Close Vivaldi</h3>
+          <p>Vivaldi holds its config in memory. Close it first so changes stick.</p>
+        </div>
+        <div class="step-arrow">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>Pick profiles</h3>
+          <p>Select FROM and TO. Choose what to sync in basic or advanced mode.</p>
+        </div>
+        <div class="step-arrow">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>Dry run, then sync</h3>
+          <p>Preview what gets copied, then hit Sync Now. A backup is made first.</p>
         </div>
       </div>
     </div>
@@ -81,88 +152,53 @@
   <!-- FEATURES -->
   <section class="features" id="features">
     <div class="container">
+      <div class="section-label">What gets synced</div>
       <h2 class="section-title">Everything you need to stay in sync</h2>
       <div class="features-grid">
-
         <div class="feature-card">
           <div class="feature-icon">🖥️</div>
           <h3>UI Layout</h3>
-          <p>Tab bar position, close button side, toolbar buttons, address bar, auto-hide rules — synced perfectly.</p>
+          <p>Tab bar position, close button side, toolbar buttons, address bar, auto-hide rules.</p>
         </div>
-
         <div class="feature-card">
           <div class="feature-icon">🎨</div>
-          <h3>Themes & Appearance</h3>
+          <h3>Themes</h3>
           <p>Active theme, saved custom themes, window accent color. Your profile, your look.</p>
         </div>
-
         <div class="feature-card">
           <div class="feature-icon">⌨️</div>
           <h3>Keyboard Shortcuts</h3>
-          <p>Custom key bindings, command chains, and action definitions — no relearning muscle memory.</p>
+          <p>Custom key bindings, command chains, and action definitions.</p>
         </div>
-
         <div class="feature-card">
           <div class="feature-icon">🔍</div>
           <h3>Search Engine</h3>
-          <p>Default search engine, suggestions, and search nicknames across all your profiles.</p>
+          <p>Default search engine, suggestions, and search nicknames.</p>
         </div>
-
         <div class="feature-card">
           <div class="feature-icon">🧩</div>
           <h3>Extensions</h3>
-          <p>Copy installed extensions from one profile to another with a single click.</p>
+          <p>Copy installed extensions between profiles with a single click.</p>
         </div>
-
         <div class="feature-card">
           <div class="feature-icon">📌</div>
-          <h3>Panels & Workspaces</h3>
+          <h3>Panels and Workspaces</h3>
           <p>Web panels, workspaces, sidebar settings, startup page, new tab behavior.</p>
         </div>
-
         <div class="feature-card">
           <div class="feature-icon">🛡️</div>
           <h3>Safe by Design</h3>
           <p>Never touches bookmarks, history, or passwords. Creates a backup before every write.</p>
         </div>
-
         <div class="feature-card">
           <div class="feature-icon">⏱️</div>
           <h3>Auto-Sync</h3>
-          <p>Run on schedule (5 min to 2 hours), on app launch, or start at login as a menu bar app.</p>
+          <p>Run on a schedule (5 min to 2 hours), on launch, or from the menu bar at login.</p>
         </div>
-
         <div class="feature-card">
           <div class="feature-icon">🔬</div>
           <h3>Dry Run Mode</h3>
           <p>Preview exactly what will be copied before committing. No surprises.</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- HOW IT WORKS -->
-  <section class="how">
-    <div class="container">
-      <h2 class="section-title">Simple as 1-2-3</h2>
-      <div class="steps">
-        <div class="step">
-          <div class="step-num">1</div>
-          <h3>Close Vivaldi</h3>
-          <p>Vivaldi holds its config in memory. Close it first so changes stick.</p>
-        </div>
-        <div class="step-arrow">→</div>
-        <div class="step">
-          <div class="step-num">2</div>
-          <h3>Pick profiles</h3>
-          <p>Select a FROM and TO profile. Choose what to sync — basic or granular advanced mode.</p>
-        </div>
-        <div class="step-arrow">→</div>
-        <div class="step">
-          <div class="step-num">3</div>
-          <h3>Dry run, then sync</h3>
-          <p>Preview changes with Dry Run, then hit Sync Now. Done.</p>
         </div>
       </div>
     </div>
@@ -174,7 +210,7 @@
       <div class="support-card">
         <div>
           <h2>Vivaldi Sync is free, forever.</h2>
-          <p>If it saves you time, a coffee keeps it going.</p>
+          <p>If it saves you time, a coffee helps keep it going.</p>
         </div>
         <a href="https://buymeacoffee.com/smithplus" class="bmc-btn" target="_blank">
           ☕ Buy me a coffee
