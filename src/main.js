@@ -182,6 +182,12 @@ document.getElementById('btn-all').addEventListener('click', () => {
   document.querySelectorAll('[data-cat-check], [data-subkey]')
     .forEach(b => { b.checked = !allChecked; b.indeterminate = false })
   document.getElementById('btn-all').textContent = allChecked ? 'Select all' : 'Deselect all'
+  silentSaveConfig()
+})
+
+document.getElementById('btn-save-selection').addEventListener('click', async () => {
+  await silentSaveConfig()
+  showSavedIndicator()
 })
 
 // Collect all individual keys to sync based on current checkboxes
@@ -390,12 +396,24 @@ function buildConfig() {
   }
 }
 
+let savedIndicatorTimer = null
+function showSavedIndicator() {
+  const el = document.getElementById('selection-saved')
+  if (!el) return
+  el.classList.remove('hidden')
+  clearTimeout(savedIndicatorTimer)
+  savedIndicatorTimer = setTimeout(() => el.classList.add('hidden'), 2000)
+}
+
 async function silentSaveConfig() {
   try {
     const newConfig = buildConfig()
     await invoke('save_config', { config: newConfig })
     config = newConfig
-  } catch (_) {}
+    showSavedIndicator()
+  } catch (e) {
+    console.error('silentSaveConfig failed:', e)
+  }
 }
 
 document.getElementById('btn-save-config').addEventListener('click', async () => {

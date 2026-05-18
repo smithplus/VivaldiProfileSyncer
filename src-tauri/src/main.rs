@@ -512,6 +512,11 @@ fn main() {
         return;
     }
 
+    // Ensure config directory exists before anything else touches it
+    if let Some(parent) = config_path().parent() {
+        let _ = fs::create_dir_all(parent);
+    }
+
     tauri::Builder::default()
         .manage(AppState { log: Mutex::new(Vec::new()) })
         .setup(|app| {

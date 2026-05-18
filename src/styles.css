@@ -87,6 +87,7 @@ header {
   gap: 12px;
 }
 .tab-view.hidden { display: none; }
+.tab-view-about { overflow-y: auto; }
 
 /* ── Cards ── */
 .card {
@@ -158,6 +159,15 @@ select:disabled { opacity: 0.4; cursor: not-allowed; }
 }
 
 .section-header-actions { display: flex; align-items: center; gap: 12px; }
+
+.saved-indicator {
+  font-size: 11px;
+  color: var(--success);
+  font-weight: 500;
+  opacity: 1;
+  transition: opacity 0.4s;
+}
+.saved-indicator.hidden { display: none; }
 
 /* ── Advanced toggle ── */
 .advanced-toggle {
@@ -386,7 +396,7 @@ button {
 }
 
 /* ── About ── */
-.about-card { padding: 24px; display: flex; flex-direction: column; gap: 22px; }
+.about-card { padding: 24px; display: flex; flex-direction: column; gap: 22px; overflow-y: auto; }
 
 .about-logo { display: flex; align-items: center; gap: 16px; }
 .about-logo-icon {

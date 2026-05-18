@@ -52,6 +52,7 @@
       <div class="section-header">
         <span>WHAT TO SYNC</span>
         <div class="section-header-actions">
+          <span id="selection-saved" class="saved-indicator hidden">✓ Saved</span>
           <button id="btn-all" class="btn-link">Select all</button>
           <label class="advanced-toggle">
             <input type="checkbox" id="toggle-advanced" />
@@ -64,6 +65,7 @@
 
     <section class="actions-row">
       <button id="btn-dry" class="btn-secondary">Dry Run</button>
+      <button id="btn-save-selection" class="btn-secondary">Save Selection</button>
       <button id="btn-sync" class="btn-primary">Sync Now</button>
     </section>
 
@@ -186,7 +188,7 @@
   </main>
 
   <!-- ── ABOUT TAB ── -->
-  <main class="tab-view hidden" id="tab-about">
+  <main class="tab-view hidden tab-view-about" id="tab-about">
     <section class="card about-card">
       <div class="about-logo">
         <div class="about-logo-icon">
