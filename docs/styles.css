@@ -110,9 +110,9 @@ body {
 }
 .hero .eyebrow { display: block; margin-bottom: 28px; }
 .hero-title {
-  font-size: clamp(48px, 8vw, 80px);
+  font-size: clamp(36px, 5.5vw, 58px);
   font-weight: 700;
-  line-height: 1.05;
+  line-height: 1.08;
   letter-spacing: -0.03em;
   margin-bottom: 28px;
 }
