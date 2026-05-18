@@ -570,15 +570,18 @@ fn main() {
                 })
                 .build(app)?;
 
-            // Wake-from-sleep detection: sleep 30s, check if actual elapsed > 90s
+            // Wake-from-sleep detection: sleep 30s using wall clock (SystemTime).
+            // Instant is paused during macOS sleep; SystemTime advances through it.
+            // If wall-clock elapsed >> sleep interval, the system was asleep.
             let wake_app = app.handle().clone();
             std::thread::spawn(move || {
                 let sleep_secs = 30u64;
                 let threshold  = sleep_secs * 3;
                 loop {
-                    let before = std::time::Instant::now();
+                    let before = std::time::SystemTime::now();
                     std::thread::sleep(std::time::Duration::from_secs(sleep_secs));
-                    if before.elapsed().as_secs() > threshold {
+                    let elapsed = before.elapsed().map(|d| d.as_secs()).unwrap_or(0);
+                    if elapsed > threshold {
                         if let Some(w) = wake_app.get_webview_window("main") {
                             let _ = w.emit("system-wake", ());
                         }
