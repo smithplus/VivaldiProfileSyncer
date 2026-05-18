@@ -41,7 +41,7 @@
   <!-- HERO -->
   <section class="hero">
     <div class="eyebrow">Free · Open source · macOS</div>
-    <h1 class="hero-title">Sync Vivaldi profiles.<br/>Locally. No cloud.</h1>
+    <h1 class="hero-title"><span class="hero-line1">Sync Vivaldi profiles.</span><br/><span class="hero-line2">Locally. No cloud.</span></h1>
     <p class="hero-sub">
       Keep your themes, shortcuts, tab layout, extensions, and more in sync across multiple Vivaldi profiles. Everything stays on your Mac.
     </p>
@@ -61,32 +61,14 @@
       <div class="section-label">Screenshots</div>
       <div class="screenshots-row">
         <figure class="screenshot-card">
-          <div class="window-chrome">
-            <span class="dot red"></span>
-            <span class="dot yellow"></span>
-            <span class="dot green"></span>
-            <span class="window-title">Sync</span>
-          </div>
           <img src="screenshots/sync.png" alt="Vivaldi Sync — Sync tab" loading="lazy" />
           <figcaption>Pick your profiles, choose what to sync, done.</figcaption>
         </figure>
         <figure class="screenshot-card">
-          <div class="window-chrome">
-            <span class="dot red"></span>
-            <span class="dot yellow"></span>
-            <span class="dot green"></span>
-            <span class="window-title">Extensions</span>
-          </div>
           <img src="screenshots/extensions.png" alt="Extensions tab" loading="lazy" />
           <figcaption>Copy installed extensions from one profile to another.</figcaption>
         </figure>
         <figure class="screenshot-card">
-          <div class="window-chrome">
-            <span class="dot red"></span>
-            <span class="dot yellow"></span>
-            <span class="dot green"></span>
-            <span class="window-title">Settings</span>
-          </div>
           <img src="screenshots/settings.png" alt="Settings tab" loading="lazy" />
           <figcaption>Auto-sync on a schedule or every time the app launches.</figcaption>
         </figure>
@@ -101,13 +83,13 @@
         <div class="section-label">Why I built this</div>
         <div class="story-body">
           <p>
-            Earlier this year Microsoft quietly removed the app sidebar from Edge. That was the one feature keeping me there, so I switched to Vivaldi. It has the sidebar, it is Chromium-based, and it is surprisingly configurable.
+            Earlier this year Microsoft <a href="https://support.microsoft.com/en-us/topic/streamline-access-to-your-favorite-sites-and-apps-with-sidebar-in-microsoft-edge-fa8d4592-4ac2-4bea-b022-8242fb63fad8" target="_blank" rel="noopener">quietly removed the app sidebar from Edge</a>. That was the one feature keeping me there, so I switched to Vivaldi. It has the sidebar, it is Chromium-based, and it is surprisingly configurable.
           </p>
           <p>
             The problem is I run two Vivaldi profiles. One for work, one for personal. Every time I tweaked a theme or changed a keyboard shortcut in one profile, the other would fall behind. Vivaldi does not have built-in cross-profile sync for settings, so I ended up copying stuff by hand.
           </p>
           <p>
-            I spent a weekend writing a small Tauri app to handle this. It reads the Preferences JSON from one profile and copies specific keys to another. Nothing leaves your machine. No accounts. No cloud. Just file copies with a backup first.
+            I spent a "telling Claude to write Rust" weekend building a small Tauri app to handle this. It reads the Preferences JSON from one profile and copies specific keys to another. Nothing leaves your machine. No accounts. No cloud. Just file copies with a backup first.
           </p>
           <p>
             I figured if I needed this, someone else probably does too. Especially with how many people are moving to Vivaldi right now.

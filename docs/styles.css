@@ -115,7 +115,6 @@ body {
   line-height: 1.08;
   letter-spacing: -0.03em;
   margin-bottom: 24px;
-  text-wrap: balance;
 }
 .hero-sub {
   font-size: 17px;
@@ -163,12 +162,14 @@ body {
 
 /* SCREENSHOTS */
 .screenshots { padding: 0 0 96px; }
+.screenshots .container { text-align: center; }
 
 .screenshots-row {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   align-items: start;
+  text-align: left;
 }
 
 .screenshot-card {
@@ -176,34 +177,7 @@ body {
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: var(--inset);
-}
-
-.window-chrome {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 10px 14px;
-  background: #2a2a2a;
-  border-bottom: 1px solid rgba(255,255,255,0.04);
-  position: relative;
-}
-.dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-.dot.red    { background: #ff5f57; }
-.dot.yellow { background: #ffbd2e; }
-.dot.green  { background: #28ca41; }
-.window-title {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 11px;
-  color: var(--text-muted);
-  font-weight: 500;
-  letter-spacing: 0.01em;
+  text-align: left;
 }
 
 .screenshot-card img {
@@ -218,6 +192,15 @@ body {
   line-height: 1.5;
   border-top: 1px solid rgba(255,255,255,0.04);
 }
+
+.story-body a {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(255,255,255,0.25);
+  transition: text-decoration-color 0.15s;
+}
+.story-body a:hover { text-decoration-color: rgba(255,255,255,0.7); }
 
 /* STORY */
 .story {
