@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vivaldi Sync</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div id="app">
+
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <div class="logo-icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 2v6h-6"/><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M3 22v-6h6"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/>
+        </svg>
+      </div>
+      <span class="logo-text">Vivaldi Sync</span>
+    </div>
+    <nav class="tabs">
+      <button class="tab active" data-tab="sync">Sync</button>
+      <button class="tab" data-tab="extensions">Extensions</button>
+      <button class="tab" data-tab="settings">Settings</button>
+      <button class="tab" data-tab="about">About</button>
+    </nav>
+  </header>
+
+  <!-- ── SYNC TAB ── -->
+  <main class="tab-view active" id="tab-sync">
+
+    <div id="vivaldi-warning" class="banner warning hidden">
+      ⚠ Close all Vivaldi windows before syncing — otherwise Vivaldi will overwrite changes.
+    </div>
+
+    <section class="card">
+      <div class="profiles-row">
+        <div class="profile-select">
+          <label>FROM</label>
+          <select id="select-from"></select>
+        </div>
+        <button id="btn-swap" class="btn-icon" title="Swap">⇄</button>
+        <div class="profile-select">
+          <label>TO</label>
+          <select id="select-to"></select>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-header">
+        <span>WHAT TO SYNC</span>
+        <div class="section-header-actions">
+          <button id="btn-all" class="btn-link">Select all</button>
+          <label class="advanced-toggle">
+            <input type="checkbox" id="toggle-advanced" />
+            <span>Advanced</span>
+          </label>
+        </div>
+      </div>
+      <div id="category-list" class="category-list"></div>
+    </section>
+
+    <section class="actions-row">
+      <button id="btn-dry" class="btn-secondary">Dry Run</button>
+      <button id="btn-sync" class="btn-primary">Sync Now</button>
+    </section>
+
+    <div id="result-banner" class="banner hidden"></div>
+  </main>
+
+  <!-- ── EXTENSIONS TAB ── -->
+  <main class="tab-view hidden" id="tab-extensions">
+    <section class="card">
+      <div class="profiles-row">
+        <div class="profile-select">
+          <label>FROM</label>
+          <select id="ext-select-from"></select>
+        </div>
+        <button id="ext-btn-swap" class="btn-icon">⇄</button>
+        <div class="profile-select">
+          <label>TO</label>
+          <select id="ext-select-to"></select>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" style="flex:1; min-height:0; display:flex; flex-direction:column;">
+      <div class="section-header">
+        <span>EXTENSIONS IN SOURCE PROFILE</span>
+        <div class="section-header-actions">
+          <button id="ext-btn-refresh" class="btn-link">↻ Refresh</button>
+          <button id="ext-btn-all" class="btn-link">Select all</button>
+        </div>
+      </div>
+      <div id="ext-list" class="ext-list"></div>
+    </section>
+
+    <section class="actions-row">
+      <button id="ext-btn-dry" class="btn-secondary">Dry Run</button>
+      <button id="ext-btn-copy" class="btn-primary">Copy Selected</button>
+    </section>
+
+    <div id="ext-result-banner" class="banner hidden"></div>
+  </main>
+
+  <!-- ── SETTINGS TAB ── -->
+  <main class="tab-view hidden" id="tab-settings">
+
+    <section class="card">
+      <div class="section-header"><span>AUTO-SYNC</span></div>
+
+      <div class="setting-row">
+        <div class="setting-info">
+          <span class="setting-label">⏱ On a schedule</span>
+          <span class="setting-desc">Sync automatically every X minutes while the app is open</span>
+        </div>
+        <div class="setting-control">
+          <input type="checkbox" id="cfg-auto-enabled" />
+          <select id="cfg-auto-minutes">
+            <option value="5">5 min</option>
+            <option value="15">15 min</option>
+            <option value="30" selected>30 min</option>
+            <option value="60">1 hour</option>
+            <option value="120">2 hours</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="setting-row">
+        <div class="setting-info">
+          <span class="setting-label">🚀 On app launch</span>
+          <span class="setting-desc">Run sync automatically when Vivaldi Sync opens</span>
+        </div>
+        <div class="setting-control">
+          <input type="checkbox" id="cfg-sync-on-launch" />
+        </div>
+      </div>
+
+      <div class="setting-row">
+        <div class="setting-info">
+          <span class="setting-label">🔑 Start at login</span>
+          <span class="setting-desc">Launch Vivaldi Sync automatically when you log into macOS. Runs in the menu bar.</span>
+        </div>
+        <div class="setting-control">
+          <input type="checkbox" id="cfg-login-item" />
+        </div>
+      </div>
+
+      <div class="setting-row coming-soon">
+        <div class="setting-info">
+          <span class="setting-label">💻 On lid open <span class="badge">Coming soon</span></span>
+          <span class="setting-desc">Run sync when your MacBook wakes from sleep</span>
+        </div>
+        <div class="setting-control">
+          <input type="checkbox" disabled />
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-header"><span>DEFAULTS</span></div>
+      <div class="setting-row">
+        <div class="setting-info">
+          <span class="setting-label">Default FROM profile</span>
+        </div>
+        <div class="setting-control">
+          <select id="cfg-default-from" style="min-width:160px"></select>
+        </div>
+      </div>
+      <div class="setting-row">
+        <div class="setting-info">
+          <span class="setting-label">Default TO profile</span>
+        </div>
+        <div class="setting-control">
+          <select id="cfg-default-to" style="min-width:160px"></select>
+        </div>
+      </div>
+    </section>
+
+    <section class="actions-row">
+      <button id="btn-save-config" class="btn-primary">Save Settings</button>
+    </section>
+    <div id="settings-banner" class="banner hidden"></div>
+  </main>
+
+  <!-- ── ABOUT TAB ── -->
+  <main class="tab-view hidden" id="tab-about">
+    <section class="card about-card">
+      <div class="about-logo">
+        <div class="about-logo-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 2v6h-6"/><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M3 22v-6h6"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/>
+          </svg>
+        </div>
+        <div>
+          <h1>Vivaldi Sync</h1>
+          <p class="about-version">v0.1.0 · macOS</p>
+        </div>
+      </div>
+
+      <p class="about-desc">
+        Sync UI settings, themes, keyboard shortcuts, search engine, extensions,
+        and more between Vivaldi profiles — locally, without cloud.
+      </p>
+
+      <div class="about-links">
+        <a class="about-link" id="link-github" href="#">
+          <span class="about-link-icon">⌥</span>
+          <div class="about-link-body">
+            <strong>View on GitHub</strong>
+            <span>github.com/smithplus/VivaldiProfileSyncer</span>
+          </div>
+        </a>
+        <a class="about-link" id="link-issue" href="#">
+          <span class="about-link-icon">🐛</span>
+          <div class="about-link-body">
+            <strong>Report an issue</strong>
+            <span>github.com/smithplus/VivaldiProfileSyncer/issues</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="about-section">
+        <h3>What gets synced</h3>
+        <ul class="about-features">
+          <li>🖥️ Tab bar position, toolbar layout, address bar</li>
+          <li>🎨 Themes and appearance</li>
+          <li>⌨️ Keyboard shortcuts and command chains</li>
+          <li>🔍 Default search engine</li>
+          <li>🧩 Browser extensions (copy between profiles)</li>
+          <li>📌 Web panels, workspaces, startup settings</li>
+        </ul>
+      </div>
+
+      <div class="about-section">
+        <h3>Built with</h3>
+        <p class="about-tech">Tauri 2 · Rust · Vanilla JS</p>
+      </div>
+
+      <div class="about-footer">
+        Made by <strong>Martin Smith</strong> · Open source · MIT license
+      </div>
+
+      <a class="bmc-btn" id="link-bmc" href="#">
+        <span>☕</span>
+        <span>Buy me a coffee</span>
+      </a>
+    </section>
+  </main>
+
+  <!-- Log modal -->
+  <div id="log-modal" class="modal hidden">
+    <div class="modal-backdrop"></div>
+    <div class="modal-box">
+      <div class="modal-header">
+        <span>Sync History</span>
+        <button id="log-close" class="btn-icon">✕</button>
+      </div>
+      <div id="log-list" class="log-list"></div>
+    </div>
+  </div>
+
+</div>
+<script type="module" src="main.js"></script>
+</body>
+</html>

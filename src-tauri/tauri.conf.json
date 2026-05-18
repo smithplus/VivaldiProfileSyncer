@@ -1,0 +1,39 @@
+{
+  "productName": "Vivaldi Sync",
+  "version": "0.1.0",
+  "identifier": "app.tabella.vivaldi-sync",
+  "build": {
+    "frontendDist": "../dist",
+    "devUrl": "http://localhost:1420",
+    "beforeDevCommand": "npm run dev",
+    "beforeBuildCommand": "npm run build"
+  },
+  "app": {
+    "withGlobalTauri": true,
+    "windows": [
+      {
+        "title": "Vivaldi Sync",
+        "width": 720,
+        "height": 640,
+        "resizable": true,
+        "center": true,
+        "decorations": true,
+        "minWidth": 600,
+        "minHeight": 520
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png"
+    ]
+  },
+  "plugins": {}
+}
