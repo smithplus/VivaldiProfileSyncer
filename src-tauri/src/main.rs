@@ -52,6 +52,7 @@ struct AppConfig {
     // things the user didn't approve.
     selected_keys: Vec<String>,
     advanced_mode: bool,
+    sync_on_wake: bool,
 }
 
 impl Default for AppConfig {
@@ -65,6 +66,7 @@ impl Default for AppConfig {
             default_to: String::new(),
             selected_keys: Vec::new(),
             advanced_mode: false,
+            sync_on_wake: false,
         }
     }
 }
@@ -567,6 +569,22 @@ fn main() {
                     }
                 })
                 .build(app)?;
+
+            // Wake-from-sleep detection: sleep 30s, check if actual elapsed > 90s
+            let wake_app = app.handle().clone();
+            std::thread::spawn(move || {
+                let sleep_secs = 30u64;
+                let threshold  = sleep_secs * 3;
+                loop {
+                    let before = std::time::Instant::now();
+                    std::thread::sleep(std::time::Duration::from_secs(sleep_secs));
+                    if before.elapsed().as_secs() > threshold {
+                        if let Some(w) = wake_app.get_webview_window("main") {
+                            let _ = w.emit("system-wake", ());
+                        }
+                    }
+                }
+            });
 
             // Hide window instead of quit on close
             let window = app.get_webview_window("main").unwrap();

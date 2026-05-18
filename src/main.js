@@ -18,6 +18,7 @@ function normaliseConfig(raw) {
     default_to:         pick('default_to',         'defaultTo')        ?? '',
     selected_keys:      pick('selected_keys',      'selectedKeys')     ?? null,
     advanced_mode:      pick('advanced_mode',       'advancedMode')    ?? false,
+    sync_on_wake:       pick('sync_on_wake',        'syncOnWake')      ?? false,
   }
 }
 
@@ -49,6 +50,11 @@ async function init() {
 
   // Listen for tray "Sync Now" click
   listen('tray-sync-now', () => runSync(false))
+
+  // Sync on wake from sleep
+  listen('system-wake', () => {
+    if (config.sync_on_wake) runSync(false)
+  })
 
   // Auto-save when window hides to tray or when quitting
   listen('window-hiding', () => silentSaveConfig())
@@ -360,6 +366,7 @@ function applyConfig() {
   document.getElementById('cfg-auto-minutes').value     = config.auto_sync_minutes  ?? 30
   document.getElementById('cfg-sync-on-launch').checked = config.sync_on_launch     ?? false
   document.getElementById('cfg-login-item').checked     = config.login_item_enabled ?? false
+  document.getElementById('cfg-sync-on-wake').checked  = config.sync_on_wake       ?? false
   document.getElementById('toggle-advanced').checked    = config.advanced_mode      ?? false
 
   if (config.default_from) document.getElementById('cfg-default-from').value = config.default_from
@@ -393,6 +400,7 @@ function buildConfig() {
     default_to:         document.getElementById('cfg-default-to').value,
     selected_keys:      collectSelectedKeys(),
     advanced_mode:      document.getElementById('toggle-advanced').checked,
+    sync_on_wake:       document.getElementById('cfg-sync-on-wake').checked,
   }
 }
 
