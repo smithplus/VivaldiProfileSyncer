@@ -17,6 +17,17 @@
 </head>
 <body>
 
+  <!-- LIGHTBOX -->
+  <div id="lightbox" class="lightbox hidden">
+    <div class="lightbox-backdrop"></div>
+    <div class="lightbox-content">
+      <img id="lightbox-img" src="" alt="" />
+      <button id="lightbox-prev" class="lightbox-btn">&#8592;</button>
+      <button id="lightbox-next" class="lightbox-btn lightbox-btn-right">&#8594;</button>
+      <button id="lightbox-close" class="lightbox-close">&#10005;</button>
+    </div>
+  </div>
+
   <!-- NAV -->
   <nav class="nav">
     <div class="nav-inner">
@@ -41,7 +52,7 @@
   <!-- HERO -->
   <section class="hero">
     <div class="eyebrow">Free · Open source · macOS</div>
-    <h1 class="hero-title"><span class="hero-line1">Sync Vivaldi profiles.</span><br/><span class="hero-line2">Locally. No cloud.</span></h1>
+    <h1 class="hero-title">Sync Vivaldi profiles.<br>Locally. No cloud.</h1>
     <p class="hero-sub">
       Keep your themes, shortcuts, tab layout, extensions, and more in sync across multiple Vivaldi profiles. Everything stays on your Mac.
     </p>
@@ -59,19 +70,38 @@
   <section class="screenshots" id="screenshots">
     <div class="container">
       <div class="section-label">Screenshots</div>
-      <div class="screenshots-row">
-        <figure class="screenshot-card">
+
+      <div class="feature-row">
+        <figure class="feature-img zoomable" data-index="0">
           <img src="screenshots/sync.png" alt="Vivaldi Sync — Sync tab" loading="lazy" />
-          <figcaption>Pick your profiles, choose what to sync, done.</figcaption>
+          <div class="zoom-hint">Click to enlarge</div>
         </figure>
-        <figure class="screenshot-card">
+        <div class="feature-text">
+          <h3>Sync settings between profiles</h3>
+          <p>Pick a source and destination profile, choose what to copy — basic mode covers the most common settings, advanced mode lets you pick individual preference keys. Dry run first, then sync.</p>
+        </div>
+      </div>
+
+      <div class="feature-row reverse">
+        <figure class="feature-img zoomable" data-index="1">
           <img src="screenshots/extensions.png" alt="Extensions tab" loading="lazy" />
-          <figcaption>Copy installed extensions from one profile to another.</figcaption>
+          <div class="zoom-hint">Click to enlarge</div>
         </figure>
-        <figure class="screenshot-card">
+        <div class="feature-text">
+          <h3>Copy extensions between profiles</h3>
+          <p>See every extension installed in your source profile, select the ones you want, and copy them over in one click. Useful when you set up a new profile and want to bring your tools with you.</p>
+        </div>
+      </div>
+
+      <div class="feature-row">
+        <figure class="feature-img zoomable" data-index="2">
           <img src="screenshots/settings.png" alt="Settings tab" loading="lazy" />
-          <figcaption>Auto-sync on a schedule or every time the app launches.</figcaption>
+          <div class="zoom-hint">Click to enlarge</div>
         </figure>
+        <div class="feature-text">
+          <h3>Auto-sync without thinking about it</h3>
+          <p>Set a schedule and forget it. Vivaldi Sync can run every 5 minutes, every hour, or anything in between. It also supports syncing on app launch and starting at login as a menu bar app.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -79,29 +109,27 @@
   <!-- WHY I BUILT THIS -->
   <section class="story" id="story">
     <div class="container">
-      <div class="story-inner">
-        <div class="section-label">Why I built this</div>
-        <div class="story-body">
-          <p>
-            Earlier this year Microsoft <a href="https://support.microsoft.com/en-us/topic/streamline-access-to-your-favorite-sites-and-apps-with-sidebar-in-microsoft-edge-fa8d4592-4ac2-4bea-b022-8242fb63fad8" target="_blank" rel="noopener">quietly removed the app sidebar from Edge</a>. That was the one feature keeping me there, so I switched to Vivaldi. It has the sidebar, it is Chromium-based, and it is surprisingly configurable.
-          </p>
-          <p>
-            The problem is I run two Vivaldi profiles. One for work, one for personal. Every time I tweaked a theme or changed a keyboard shortcut in one profile, the other would fall behind. Vivaldi does not have built-in cross-profile sync for settings, so I ended up copying stuff by hand.
-          </p>
-          <p>
-            I spent a "telling Claude to write Rust" weekend building a small Tauri app to handle this. It reads the Preferences JSON from one profile and copies specific keys to another. Nothing leaves your machine. No accounts. No cloud. Just file copies with a backup first.
-          </p>
-          <p>
-            I figured if I needed this, someone else probably does too. Especially with how many people are moving to Vivaldi right now.
-          </p>
-          <p class="story-sig">Martin Smith</p>
-        </div>
+      <div class="section-label">Why I built this</div>
+      <div class="story-body">
+        <p>
+          Earlier this year Microsoft <a href="https://support.microsoft.com/en-us/topic/streamline-access-to-your-favorite-sites-and-apps-with-sidebar-in-microsoft-edge-fa8d4592-4ac2-4bea-b022-8242fb63fad8" target="_blank" rel="noopener">quietly removed the app sidebar from Edge</a>. That was the one feature keeping me there, so I switched to Vivaldi. It has the sidebar, it is Chromium-based, and it is surprisingly configurable.
+        </p>
+        <p>
+          The problem is I run two Vivaldi profiles. One for work, one for personal. Every time I tweaked a theme or changed a keyboard shortcut in one profile, the other would fall behind. Vivaldi does not have built-in cross-profile sync for settings, so I ended up copying stuff by hand.
+        </p>
+        <p>
+          I spent a "telling Claude to write Rust" weekend building a small Tauri app to handle this. It reads the Preferences JSON from one profile and copies specific keys to another. Nothing leaves your machine. No accounts. No cloud. Just file copies with a backup first.
+        </p>
+        <p>
+          I figured if I needed this, someone else probably does too. Especially with how many people are switching to Vivaldi right now.
+        </p>
+        <p class="story-sig">Martin Smith</p>
       </div>
     </div>
   </section>
 
   <!-- HOW IT WORKS -->
-  <section class="how" id="how">
+  <section class="how">
     <div class="container">
       <div class="section-label">How it works</div>
       <h2 class="section-title">Simple as 1-2-3</h2>
@@ -137,51 +165,15 @@
       <div class="section-label">What gets synced</div>
       <h2 class="section-title">Everything you need to stay in sync</h2>
       <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon">🖥️</div>
-          <h3>UI Layout</h3>
-          <p>Tab bar position, close button side, toolbar buttons, address bar, auto-hide rules.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🎨</div>
-          <h3>Themes</h3>
-          <p>Active theme, saved custom themes, window accent color. Your profile, your look.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">⌨️</div>
-          <h3>Keyboard Shortcuts</h3>
-          <p>Custom key bindings, command chains, and action definitions.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🔍</div>
-          <h3>Search Engine</h3>
-          <p>Default search engine, suggestions, and search nicknames.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🧩</div>
-          <h3>Extensions</h3>
-          <p>Copy installed extensions between profiles with a single click.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">📌</div>
-          <h3>Panels and Workspaces</h3>
-          <p>Web panels, workspaces, sidebar settings, startup page, new tab behavior.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🛡️</div>
-          <h3>Safe by Design</h3>
-          <p>Never touches bookmarks, history, or passwords. Creates a backup before every write.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">⏱️</div>
-          <h3>Auto-Sync</h3>
-          <p>Run on a schedule (5 min to 2 hours), on launch, or from the menu bar at login.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🔬</div>
-          <h3>Dry Run Mode</h3>
-          <p>Preview exactly what will be copied before committing. No surprises.</p>
-        </div>
+        <div class="feature-card"><div class="feature-icon">🖥️</div><h3>UI Layout</h3><p>Tab bar position, close button side, toolbar buttons, address bar, auto-hide rules.</p></div>
+        <div class="feature-card"><div class="feature-icon">🎨</div><h3>Themes</h3><p>Active theme, saved custom themes, window accent color. Your profile, your look.</p></div>
+        <div class="feature-card"><div class="feature-icon">⌨️</div><h3>Keyboard Shortcuts</h3><p>Custom key bindings, command chains, and action definitions.</p></div>
+        <div class="feature-card"><div class="feature-icon">🔍</div><h3>Search Engine</h3><p>Default search engine, suggestions, and search nicknames.</p></div>
+        <div class="feature-card"><div class="feature-icon">🧩</div><h3>Extensions</h3><p>Copy installed extensions between profiles with a single click.</p></div>
+        <div class="feature-card"><div class="feature-icon">📌</div><h3>Panels and Workspaces</h3><p>Web panels, workspaces, sidebar settings, startup page, new tab behavior.</p></div>
+        <div class="feature-card"><div class="feature-icon">🛡️</div><h3>Safe by Design</h3><p>Never touches bookmarks, history, or passwords. Creates a backup before every write.</p></div>
+        <div class="feature-card"><div class="feature-icon">⏱️</div><h3>Auto-Sync</h3><p>Run on a schedule (5 min to 2 hours), on launch, or from the menu bar at login.</p></div>
+        <div class="feature-card"><div class="feature-icon">🔬</div><h3>Dry Run Mode</h3><p>Preview exactly what will be copied before committing. No surprises.</p></div>
       </div>
     </div>
   </section>
@@ -194,9 +186,7 @@
           <h2>Vivaldi Sync is free, forever.</h2>
           <p>If it saves you time, a coffee helps keep it going.</p>
         </div>
-        <a href="https://buymeacoffee.com/smithplus" class="bmc-btn" target="_blank">
-          ☕ Buy me a coffee
-        </a>
+        <a href="https://buymeacoffee.com/smithplus" class="bmc-btn" target="_blank">☕ Buy me a coffee</a>
       </div>
     </div>
   </section>
@@ -223,5 +213,39 @@
     </div>
   </footer>
 
+  <script>
+    const images = Array.from(document.querySelectorAll('.zoomable img'));
+    const lightbox = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lightbox-img');
+    let current = 0;
+
+    function openLightbox(index) {
+      current = index;
+      lbImg.src = images[index].src;
+      lbImg.alt = images[index].alt;
+      lightbox.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      lightbox.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+    function showPrev() { openLightbox((current - 1 + images.length) % images.length); }
+    function showNext() { openLightbox((current + 1) % images.length); }
+
+    document.querySelectorAll('.zoomable').forEach(fig => {
+      fig.addEventListener('click', () => openLightbox(parseInt(fig.dataset.index)));
+    });
+    document.getElementById('lightbox-close').addEventListener('click', e => { e.stopPropagation(); closeLightbox(); });
+    document.getElementById('lightbox-prev').addEventListener('click', e => { e.stopPropagation(); showPrev(); });
+    document.getElementById('lightbox-next').addEventListener('click', e => { e.stopPropagation(); showNext(); });
+    document.querySelector('.lightbox-backdrop').addEventListener('click', closeLightbox);
+    document.addEventListener('keydown', e => {
+      if (lightbox.classList.contains('hidden')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') showPrev();
+      if (e.key === 'ArrowRight') showNext();
+    });
+  </script>
 </body>
 </html>
