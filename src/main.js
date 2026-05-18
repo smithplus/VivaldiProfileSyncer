@@ -471,6 +471,34 @@ document.getElementById('link-bmc').addEventListener('click', e => {
   invoke('shell_open', { url: 'https://buymeacoffee.com/smithplus' }).catch(() => {})
 })
 
+document.getElementById('btn-check-update').addEventListener('click', async () => {
+  const btn = document.getElementById('btn-check-update')
+  const text = document.getElementById('update-text')
+  const status = document.getElementById('update-status')
+  btn.disabled = true
+  btn.textContent = 'Checking...'
+  try {
+    const info = await invoke('check_update')
+    if (info.available) {
+      text.textContent = `v${info.latest} is available`
+      status.className = 'update-available'
+      btn.textContent = 'Download'
+      btn.disabled = false
+      btn.onclick = () => invoke('shell_open', { url: info.url }).catch(() => {})
+    } else {
+      text.textContent = `v${info.current} is the latest version`
+      status.className = 'update-idle'
+      btn.textContent = 'Check for updates'
+      btn.disabled = false
+    }
+  } catch (e) {
+    text.textContent = 'Could not check for updates'
+    status.className = 'update-idle'
+    btn.textContent = 'Try again'
+    btn.disabled = false
+  }
+})
+
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
 function showBanner(id, type, msg) {

@@ -475,6 +475,45 @@ fn quit_app(app: tauri::AppHandle, config: AppConfig) {
     app.exit(0);
 }
 
+#[derive(Debug, Serialize)]
+struct UpdateInfo {
+    available: bool,
+    latest: String,
+    current: String,
+    url: String,
+}
+
+#[tauri::command]
+fn check_update() -> Result<UpdateInfo, String> {
+    let current = env!("CARGO_PKG_VERSION").to_string();
+    let output = std::process::Command::new("curl")
+        .args([
+            "-s", "--max-time", "8",
+            "-H", "User-Agent: vivaldi-sync-updater",
+            "https://api.github.com/repos/smithplus/VivaldiProfileSyncer/releases/latest",
+        ])
+        .output()
+        .map_err(|e| format!("curl failed: {}", e))?;
+
+    let body = String::from_utf8_lossy(&output.stdout);
+    let json: Value = serde_json::from_str(&body)
+        .map_err(|_| "Could not parse GitHub response".to_string())?;
+
+    let tag = json.get("tag_name")
+        .and_then(|t| t.as_str())
+        .unwrap_or("")
+        .trim_start_matches('v')
+        .to_string();
+
+    let url = json.get("html_url")
+        .and_then(|u| u.as_str())
+        .unwrap_or("https://github.com/smithplus/VivaldiProfileSyncer/releases/latest")
+        .to_string();
+
+    let available = !tag.is_empty() && tag != current;
+    Ok(UpdateInfo { available, latest: tag, current, url })
+}
+
 #[tauri::command]
 fn shell_open(url: String) -> Result<(), String> {
     std::process::Command::new("open").arg(&url).spawn()
@@ -636,6 +675,7 @@ fn main() {
             quit_app,
             shell_open,
             set_login_item,
+            check_update,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

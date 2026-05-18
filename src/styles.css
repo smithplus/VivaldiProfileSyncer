@@ -459,6 +459,42 @@ button {
 
 .about-tech { font-size: 13px; color: var(--text-light); }
 
+.about-update {
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+  margin-bottom: 4px;
+}
+.update-idle, .update-available {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 12px;
+}
+.update-idle span { color: var(--text-light); }
+.update-available span {
+  color: #5cb85c;
+  font-weight: 600;
+}
+.btn-ghost-sm {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-light);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 4px 10px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.15s, border-color 0.15s;
+}
+.btn-ghost-sm:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
+.btn-ghost-sm:disabled { opacity: 0.5; cursor: default; }
+.update-available .btn-ghost-sm {
+  color: #5cb85c;
+  border-color: rgba(92,184,92,0.4);
+}
+
 .about-footer {
   font-size: 12px;
   color: var(--text-light);
