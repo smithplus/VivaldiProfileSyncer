@@ -264,6 +264,27 @@ fn sync_profiles(
         }
     }
 
+    // If search engine keys were requested, also sync the keywords table in Web Data.
+    // Vivaldi stores the actual engine list in a SQLite DB; Preferences alone isn't enough.
+    let sync_search = keys.iter().any(|k| k.contains("default_search_provider"));
+    if sync_search && !dry_run {
+        let from_db = base.join(&from_id).join("Web Data");
+        let to_db   = base.join(&to_id).join("Web Data");
+        if from_db.exists() && to_db.exists() {
+            let sql = format!(
+                "ATTACH DATABASE '{}' AS src; \
+                 DELETE FROM keywords WHERE sync_guid IN (SELECT sync_guid FROM src.keywords); \
+                 INSERT INTO keywords SELECT * FROM src.keywords;",
+                from_db.to_string_lossy().replace('\'', "''")
+            );
+            let _ = std::process::Command::new("sqlite3")
+                .arg(&to_db)
+                .arg(&sql)
+                .output();
+            copied.push("keywords (Web Data)".to_string());
+        }
+    }
+
     if !dry_run && !copied.is_empty() {
         let backup = to_prefs.with_extension(
             format!("bak.{}", chrono::Local::now().format("%Y%m%d_%H%M%S"))
