@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vivaldi Sync — Sync Vivaldi profiles locally, without cloud</title>
+  <meta name="description" content="Sync UI settings, themes, keyboard shortcuts, search engines, and extensions between Vivaldi profiles — locally, without cloud. Free macOS app." />
+  <meta property="og:title" content="Vivaldi Sync" />
+  <meta property="og:description" content="Sync Vivaldi profiles locally, without cloud." />
+  <meta property="og:image" content="https://smithplus.github.io/VivaldiProfileSyncer/screenshots/og.png" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="nav-logo" href="#">
+        <div class="nav-logo-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 2v6h-6"/><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M3 22v-6h6"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/>
+          </svg>
+        </div>
+        <span>Vivaldi Sync</span>
+      </a>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#screenshots">Screenshots</a>
+        <a href="https://github.com/smithplus/VivaldiProfileSyncer" target="_blank">GitHub</a>
+        <a href="https://github.com/smithplus/VivaldiProfileSyncer/releases/latest" class="nav-download" target="_blank">Download</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">macOS · Free · Open Source</div>
+    <h1 class="hero-title">Sync Vivaldi profiles.<br/>Locally. No cloud.</h1>
+    <p class="hero-sub">
+      Keep your themes, shortcuts, tab layout, extensions, and more in sync across multiple Vivaldi profiles — all on your Mac, all private.
+    </p>
+    <div class="hero-actions">
+      <a href="https://github.com/smithplus/VivaldiProfileSyncer/releases/latest" class="btn-primary" target="_blank">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download for macOS
+      </a>
+      <a href="https://github.com/smithplus/VivaldiProfileSyncer" class="btn-ghost" target="_blank">
+        View on GitHub →
+      </a>
+    </div>
+    <p class="hero-meta">v0.1.1 · Requires macOS Ventura or later · Apple Silicon</p>
+  </section>
+
+  <!-- SCREENSHOTS -->
+  <section class="screenshots" id="screenshots">
+    <div class="container">
+      <div class="screenshots-grid">
+        <figure class="screenshot-main">
+          <img src="screenshots/sync.png" alt="Vivaldi Sync — Sync tab" loading="lazy" />
+          <figcaption>Sync settings between profiles with one click</figcaption>
+        </figure>
+        <div class="screenshots-side">
+          <figure>
+            <img src="screenshots/extensions.png" alt="Extensions tab" loading="lazy" />
+            <figcaption>Copy extensions between profiles</figcaption>
+          </figure>
+          <figure>
+            <img src="screenshots/settings.png" alt="Settings tab" loading="lazy" />
+            <figcaption>Auto-sync on schedule or launch</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features" id="features">
+    <div class="container">
+      <h2 class="section-title">Everything you need to stay in sync</h2>
+      <div class="features-grid">
+
+        <div class="feature-card">
+          <div class="feature-icon">🖥️</div>
+          <h3>UI Layout</h3>
+          <p>Tab bar position, close button side, toolbar buttons, address bar, auto-hide rules — synced perfectly.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🎨</div>
+          <h3>Themes & Appearance</h3>
+          <p>Active theme, saved custom themes, window accent color. Your profile, your look.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">⌨️</div>
+          <h3>Keyboard Shortcuts</h3>
+          <p>Custom key bindings, command chains, and action definitions — no relearning muscle memory.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🔍</div>
+          <h3>Search Engine</h3>
+          <p>Default search engine, suggestions, and search nicknames across all your profiles.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🧩</div>
+          <h3>Extensions</h3>
+          <p>Copy installed extensions from one profile to another with a single click.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">📌</div>
+          <h3>Panels & Workspaces</h3>
+          <p>Web panels, workspaces, sidebar settings, startup page, new tab behavior.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🛡️</div>
+          <h3>Safe by Design</h3>
+          <p>Never touches bookmarks, history, or passwords. Creates a backup before every write.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">⏱️</div>
+          <h3>Auto-Sync</h3>
+          <p>Run on schedule (5 min to 2 hours), on app launch, or start at login as a menu bar app.</p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon">🔬</div>
+          <h3>Dry Run Mode</h3>
+          <p>Preview exactly what will be copied before committing. No surprises.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how">
+    <div class="container">
+      <h2 class="section-title">Simple as 1-2-3</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>Close Vivaldi</h3>
+          <p>Vivaldi holds its config in memory. Close it first so changes stick.</p>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>Pick profiles</h3>
+          <p>Select a FROM and TO profile. Choose what to sync — basic or granular advanced mode.</p>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>Dry run, then sync</h3>
+          <p>Preview changes with Dry Run, then hit Sync Now. Done.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BMC -->
+  <section class="support">
+    <div class="container">
+      <div class="support-card">
+        <div>
+          <h2>Vivaldi Sync is free, forever.</h2>
+          <p>If it saves you time, a coffee keeps it going.</p>
+        </div>
+        <a href="https://buymeacoffee.com/smithplus" class="bmc-btn" target="_blank">
+          ☕ Buy me a coffee
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-logo">
+          <div class="nav-logo-icon small">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 2v6h-6"/><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M3 22v-6h6"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/>
+            </svg>
+          </div>
+          <span>Vivaldi Sync</span>
+        </div>
+        <div class="footer-links">
+          <a href="https://github.com/smithplus/VivaldiProfileSyncer" target="_blank">GitHub</a>
+          <a href="https://github.com/smithplus/VivaldiProfileSyncer/releases" target="_blank">Releases</a>
+          <a href="https://github.com/smithplus/VivaldiProfileSyncer/issues" target="_blank">Report an issue</a>
+        </div>
+        <p class="footer-copy">MIT License · Made by <a href="https://github.com/smithplus" target="_blank">Martin Smith</a></p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

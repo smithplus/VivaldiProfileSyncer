@@ -1,6 +1,6 @@
 {
   "productName": "Vivaldi Sync",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "identifier": "app.tabella.vivaldi-sync",
   "build": {
     "frontendDist": "../dist",
